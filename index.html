@@ -1,83 +1,498 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Agent Atlas — what to use, when</title>
-<meta name="description" content="A searchable guide to every skill, agent, command, tool and LLM app installed in this OpenCode setup. Type what you need — get what to use.">
-<link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c0d10'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23e07856'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%230c0d10'/%3E%3C/svg%3E">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECC & Awesome LLM Apps Navigator — The Universal Agent & Skill Matchmaker</title>
+  <meta name="description" content="Intelligent search and recommendation engine for Affaan M's Everything Claude Code (ECC) skills & agents and Shubham Saboo's Awesome LLM Apps. Search any task to get the best agents, skills, and blueprints.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top">
-  <div class="top-inner">
-    <a class="brand" href="#">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name">Agent&nbsp;Atlas</span>
-    </a>
-    <div class="top-stats" id="stats" aria-label="Catalog counts"></div>
-    <div class="top-actions">
-      <button class="icon-btn" id="aiBtn" type="button" title="Ask AI for a recommendation (optional — configure endpoint first)" hidden>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg>
-        Ask AI
-      </button>
-      <button class="icon-btn" id="settingsBtn" type="button" aria-haspopup="dialog" title="Settings">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h0a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55h0a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v0a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1z"/></svg>
-        <span class="sr-only">Settings</span>
-      </button>
+  <!-- Ambient Glassmorphism Glows -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <div class="app-container">
+    <!-- Navigation Bar -->
+    <header class="navbar">
+      <a href="#" class="nav-brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>ECC & LLM Navigator</h1>
+          <div class="brand-tag">The Universal Agent & Skill Matchmaker</div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <div class="stat-pill" title="621 items indexed across ECC and Awesome LLM Apps">
+          <span class="stat-pulse"></span>
+          <span id="stat-counter">621 Items Indexed</span>
+        </div>
+
+        <button class="btn btn-outline-purple btn-sm" id="btn-open-apikey">
+          <span id="api-status-dot">🔑</span>
+          <span id="api-status-text">Configure AI Key</span>
+        </button>
+
+        <button class="btn btn-ghost btn-sm" id="btn-open-deploy">
+          <span>🚀</span>
+          <span>Deploy on GitHub</span>
+        </button>
+
+        <a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm" title="View Affaan M's ECC on GitHub">
+          <span>ECC Repo ↗</span>
+        </a>
+        <a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm" title="View Awesome LLM Apps on GitHub">
+          <span>Apps Repo ↗</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-badge">
+        <span>✨ Powered by 311 Skills · 71 Agents · 136 Production Apps</span>
+      </div>
+      <h2 class="hero-title">
+        Find the Perfect <span class="gradient-text">Agent & Skill</span><br>For Any Task You Have
+      </h2>
+      <p class="hero-subtitle">
+        Type what you want to build or accomplish. Our matchmaker searches across <strong>Affaan M's ECC</strong> and <strong>Awesome LLM Apps</strong> to deliver the ideal agent roles, workflow skills, starter apps, and execution blueprints.
+      </p>
+
+      <!-- Task Search Box -->
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="task-input" 
+            class="search-input" 
+            placeholder="Describe your task (e.g., 'Refactor legacy code with TDD', 'Autonomous financial research RAG', 'PR review pipeline')..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <span class="search-kbd" title="Press / to focus search">/</span>
+          <button id="clear-search" class="clear-search-btn" title="Clear search">✕</button>
+          <button id="btn-analyze" class="btn btn-primary btn-search-action">
+            <span>Match Agent</span>
+            <span>⚡</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Prompt Chips -->
+      <div class="prompt-chips">
+        <span class="chip-label">Try asking:</span>
+        <button class="prompt-chip" data-prompt="Automated PR review, security audit, and defect reproduction pipeline">
+          <span>🛡️</span> PR Review & Defect Reproducer
+        </button>
+        <button class="prompt-chip" data-prompt="Build a multi-agent financial research analyst with web scraping and PDF reporting">
+          <span>📈</span> Multi-Agent Financial Research
+        </button>
+        <button class="prompt-chip" data-prompt="Refactor legacy codebase with test-driven development and strict type safety">
+          <span>🧪</span> Legacy Code Refactor with TDD
+        </button>
+        <button class="prompt-chip" data-prompt="Hybrid RAG with vector search, knowledge graph, and reranking">
+          <span>🔍</span> Hybrid Graph & Vector RAG
+        </button>
+        <button class="prompt-chip" data-prompt="Realtime bidirectional voice AI assistant with MCP tool calling">
+          <span>🎙️</span> Realtime Voice AI with MCP
+        </button>
+        <button class="prompt-chip" data-prompt="Smart contract security audit and tokenomics vulnerability scanner">
+          <span>🔐</span> Smart Contract Auditor
+        </button>
+      </div>
+    </section>
+
+    <!-- Task Matchmaker Dynamic Results Section -->
+    <section id="matchmaker-section" class="matchmaker-section">
+      <!-- AI Thinking State (BeautifulUI Shimmer) -->
+      <div id="copilot-thinking-box" class="copilot-thinking-box">
+        <div class="thinking-phase">
+          <div class="spinner"></div>
+          <span id="thinking-step-title">Analyzing your task with AI Task Architect...</span>
+        </div>
+        <div id="thinking-stream" class="thinking-stream"></div>
+      </div>
+
+      <div class="matchmaker-header">
+        <div class="matchmaker-title-area">
+          <h3>
+            <span>🎯</span> Recommended Agent & Skill Architecture
+          </h3>
+          <p id="match-task-echo">Showing best matches for your specified goal</p>
+        </div>
+        <div class="confidence-badge" id="match-confidence">
+          <span>⚡ High Relevance</span>
+        </div>
+      </div>
+
+      <!-- 3-Column Bento: Best Agent, Best Skill, Best Reference App -->
+      <div class="matchmaker-grid">
+        <!-- Top Agent Match -->
+        <div class="match-card match-card-agent" id="top-agent-card">
+          <div class="match-card-tag">Recommended Primary Agent</div>
+          <h4 class="match-card-title" id="top-agent-title">Architect</h4>
+          <p class="match-card-desc" id="top-agent-desc">System design and technical decision-making specialist.</p>
+          <div class="match-card-footer">
+            <span class="item-type-badge">ECC Agent</span>
+            <button class="btn btn-outline-purple btn-sm" id="btn-view-agent">View Agent Details</button>
+          </div>
+        </div>
+
+      <!-- Simple English Plain Words Explanation -->
+      <div class="simple-english-box" id="match-simple-english-box">
+        <div class="simple-english-title">
+          <span>💡</span> In Simple English: What This Architecture Does
+        </div>
+        <div class="simple-english-body" id="match-simple-english-body">
+          You are pairing a senior planning agent with a specialized workflow skill. This means the AI will first write down a clear plan, verify edge cases, and run automated tests before making any changes.
+        </div>
+        <div class="simple-english-meta">
+          <div>
+            <strong>When to use this setup:</strong>
+            <span id="match-simple-when">Whenever you want reliable, bug-free implementation without trial-and-error.</span>
+          </div>
+          <div>
+            <strong>What it prevents:</strong>
+            <span id="match-simple-prevent">Prevents silent bugs, broken features, and AI hallucinations.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Column Bento: Best Agent, Best Skill, Best Reference App -->
+      <div class="matchmaker-grid">
+        <!-- Top Agent Match -->
+        <div class="match-card match-card-agent" id="top-agent-card">
+          <div class="match-card-tag">Recommended Primary Agent</div>
+          <h4 class="match-card-title" id="top-agent-title">Architect</h4>
+          <p class="match-card-desc" id="top-agent-desc">System design and technical decision-making specialist.</p>
+          <div class="match-card-footer">
+            <span class="item-type-badge">ECC Agent</span>
+            <button class="btn btn-outline-purple btn-sm" id="btn-view-agent">View Agent Details</button>
+          </div>
+        </div>
+
+        <!-- Top Skill Match -->
+        <div class="match-card match-card-skill" id="top-skill-card">
+          <div class="match-card-tag">Recommended Workflow Skill</div>
+          <h4 class="match-card-title" id="top-skill-title">Agentic Engineering</h4>
+          <p class="match-card-desc" id="top-skill-desc">Eval-first execution, task decomposition, and cost-aware model routing.</p>
+          <div class="match-card-footer">
+            <span class="item-type-badge">ECC Skill</span>
+            <button class="btn btn-outline-purple btn-sm" id="btn-view-skill">View Skill Details</button>
+          </div>
+        </div>
+
+        <!-- Top App Match -->
+        <div class="match-card match-card-app" id="top-app-card">
+          <div class="match-card-tag">Reference Template & App</div>
+          <h4 class="match-card-title" id="top-app-title">Multi-Agent Software Dev</h4>
+          <p class="match-card-desc" id="top-app-desc">Production-ready runnable starter codebase from Awesome LLM Apps.</p>
+          <div class="match-card-footer">
+            <span class="item-type-badge">Awesome LLM App</span>
+            <button class="btn btn-outline-purple btn-sm" id="btn-view-app">View App Source</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow Execution Blueprint -->
+      <div class="workflow-blueprint">
+        <div class="blueprint-header">
+          <div class="blueprint-title">
+            <span>📋</span> Composite 3-Step Execution Workflow
+          </div>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Recommended Execution Sequence</span>
+        </div>
+        <div class="blueprint-steps" id="blueprint-steps-container">
+          <div class="blueprint-step-item">
+            <div class="step-num">STEP 01 · SPECIFICATION & RESEARCH</div>
+            <div class="step-text" id="step-1-text">Run architecture planning and define evaluation criteria before touching implementation code.</div>
+          </div>
+          <div class="blueprint-step-item">
+            <div class="step-num">STEP 02 · IMPLEMENTATION & TOOLS</div>
+            <div class="step-text" id="step-2-text">Delegate execution to the specialized agent using targeted tool permissions and test-driven cycles.</div>
+          </div>
+          <div class="blueprint-step-item">
+            <div class="step-num">STEP 03 · VERIFICATION & GATE</div>
+            <div class="step-text" id="step-3-text">Execute automated review, verify security constraints, and run quality gates before final commit.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Harness Implementation Switcher (Antigravity & OpenCode) -->
+      <div class="harness-switcher">
+        <div class="harness-tabs" id="match-harness-tabs">
+          <button class="harness-tab-btn tab-ag active" data-harness="antigravity">
+            <span>🟢</span> Implement in Google Antigravity
+          </button>
+          <button class="harness-tab-btn tab-oc" data-harness="opencode">
+            <span>🔵</span> Implement in OpenCode
+          </button>
+          <button class="harness-tab-btn" data-harness="claude">
+            <span>🟣</span> Claude Code & CLI
+          </button>
+        </div>
+
+        <!-- Antigravity Panel -->
+        <div class="harness-content-panel active" id="panel-antigravity">
+          <p style="font-size: 0.88rem; color: #94a3b8; margin-bottom: 8px;">
+            In <strong>Google Antigravity</strong>, invoke the skill directly in your chat prompt using <code>@skill:</code> tag, or declare the rule in your <code>AGENTS.md</code>:
+          </p>
+          <div class="harness-snippet-box">
+            <div class="harness-snippet-header">
+              <span>ANTIGRAVITY CHAT PROMPT</span>
+              <button class="btn btn-ghost btn-sm" id="btn-copy-ag-prompt" style="padding: 2px 8px; font-size: 0.72rem;">Copy Prompt</button>
+            </div>
+            <pre style="margin: 0;"><code id="code-ag-prompt">@skill:agentic-engineering Please apply this skill to plan and execute our task with step-by-step verification.</code></pre>
+          </div>
+          <ol class="harness-steps-list">
+            <li>Open chat in <strong>Google Antigravity</strong>.</li>
+            <li>Paste the <code>@skill:</code> prompt above into the chat box.</li>
+            <li>Antigravity automatically opens the corresponding <code>SKILL.md</code> from your local configuration (<code>C:\Users\Chirag\.gemini\config\skills\</code>) and executes with strict quality gates.</li>
+          </ol>
+        </div>
+
+        <!-- OpenCode Panel -->
+        <div class="harness-content-panel" id="panel-opencode">
+          <p style="font-size: 0.88rem; color: #94a3b8; margin-bottom: 8px;">
+            In <strong>OpenCode</strong>, add the skill to your project's <code>.opencode/opencode.json</code> instructions array or run it from the CLI:
+          </p>
+          <div class="harness-snippet-box">
+            <div class="harness-snippet-header">
+              <span>.OPENCODE/OPENCODE.JSON INSTRUCTION ENTRY</span>
+              <button class="btn btn-ghost btn-sm" id="btn-copy-oc-json" style="padding: 2px 8px; font-size: 0.72rem;">Copy JSON</button>
+            </div>
+            <pre style="margin: 0;"><code id="code-oc-json">"instructions": [
+  "skills/agentic-engineering/SKILL.md"
+]</code></pre>
+          </div>
+          <div class="harness-snippet-box" style="margin-top: 10px;">
+            <div class="harness-snippet-header">
+              <span>OPENCODE CLI RUN COMMAND</span>
+              <button class="btn btn-ghost btn-sm" id="btn-copy-oc-cli" style="padding: 2px 8px; font-size: 0.72rem;">Copy CLI</button>
+            </div>
+            <pre style="margin: 0;"><code id="code-oc-cli">opencode run "/skill agentic-engineering"</code></pre>
+          </div>
+          <ol class="harness-steps-list">
+            <li>In your OpenCode workspace, ensure ECC is installed via <code>npx ecc install --target opencode</code>.</li>
+            <li>Add the skill path to <code>.opencode/opencode.json</code> instructions as shown above.</li>
+            <li>Execute tasks with <code>opencode run "/skill <name>"</code>.</li>
+          </ol>
+        </div>
+
+        <!-- Claude Code Panel -->
+        <div class="harness-content-panel" id="panel-claude">
+          <p style="font-size: 0.88rem; color: #94a3b8; margin-bottom: 8px;">
+            In <strong>Claude Code</strong>, invoke the agent and skill with the native CLI command:
+          </p>
+          <div class="copy-prompt-bar" style="margin-top: 8px;">
+            <span>⚡ Run Command:</span>
+            <span class="copy-prompt-text" id="copy-prompt-text">claude --agent architect "/skill agentic-engineering"</span>
+            <button class="btn btn-primary btn-sm" id="btn-copy-quick-cmd">Copy Command</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Explorer Section -->
+    <section class="catalog-section">
+      <div class="catalog-header">
+        <!-- Navigation Tabs -->
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="all">
+            <span>🎯 All Items</span>
+            <span class="tab-count" id="count-all">621</span>
+          </button>
+          <button class="tab-btn" data-tab="skills">
+            <span>⚡ ECC Skills</span>
+            <span class="tab-count" id="count-skills">311</span>
+          </button>
+          <button class="tab-btn" data-tab="agents">
+            <span>🤖 ECC Agents</span>
+            <span class="tab-count" id="count-agents">71</span>
+          </button>
+          <button class="tab-btn" data-tab="apps">
+            <span>🚀 Awesome LLM Apps</span>
+            <span class="tab-count" id="count-apps">136</span>
+          </button>
+          <button class="tab-btn" data-tab="rules">
+            <span>📜 Harnesses & Rules</span>
+            <span class="tab-count" id="count-rules">103</span>
+          </button>
+        </div>
+
+        <!-- Filter Count Indicator -->
+        <div class="results-info">
+          <span id="filtered-count-label">Showing 621 of 621 items</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills Bar -->
+      <div class="filter-bar" id="category-filter-bar">
+        <button class="filter-pill active" data-cat="all">All Categories</button>
+        <button class="filter-pill" data-cat="Architecture & Design">Architecture & Design</button>
+        <button class="filter-pill" data-cat="Testing & Quality">Testing & TDD</button>
+        <button class="filter-pill" data-cat="Security & Audit">Security & Audit</button>
+        <button class="filter-pill" data-cat="Agent Engineering">Agent Engineering</button>
+        <button class="filter-pill" data-cat="Frontend & Mobile">Frontend & Mobile</button>
+        <button class="filter-pill" data-cat="Databases & Storage">Databases & Storage</button>
+        <button class="filter-pill" data-cat="DevOps & Infrastructure">DevOps & CI/CD</button>
+        <button class="filter-pill" data-cat="RAG & Vector Search">RAG & Search</button>
+        <button class="filter-pill" data-cat="Advanced Multi-Agent & Autonomous">Multi-Agent Teams</button>
+        <button class="filter-pill" data-cat="MCP AI Agents">MCP Agents</button>
+        <button class="filter-pill" data-cat="Voice & Multimodal AI">Voice AI</button>
+        <button class="filter-pill" data-cat="Reviewers & Auditors">Reviewers & Auditors</button>
+      </div>
+
+      <!-- Items Grid -->
+      <div class="items-grid" id="items-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Item Detail Drawer Modal -->
+  <div class="modal-overlay" id="item-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="item-type-badge" id="modal-type-badge">ECC SKILL</span>
+          <h3 class="modal-title" id="modal-title" style="font-size: 1.4rem; color: #ffffff; margin-top: 4px;">Item Title</h3>
+        </div>
+        <button class="modal-close-btn" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Injected via app.js -->
+      </div>
+      <div class="modal-footer">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" id="modal-github-link">
+          <span>View on GitHub ↗</span>
+        </a>
+        <button class="btn btn-primary" id="modal-copy-btn">
+          <span>Copy Install / Run Command</span>
+        </button>
+      </div>
     </div>
   </div>
-</header>
 
-<main class="wrap">
-  <section class="hero">
-    <h1>Everything your agent can do.<br><em>Find the right tool in seconds.</em></h1>
-    <div class="search-row" role="search">
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="q" type="search" placeholder="Type your need — “fix a bug”, “review my code”, “deploy”, “build a dashboard”…" autocomplete="off" spellcheck="false" aria-label="Search the catalog">
-      <kbd class="kbd-hint" id="kbdHint">/</kbd>
+  <!-- API Key Configuration Modal -->
+  <div class="modal-overlay" id="apikey-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="item-type-badge" style="color: var(--accent-purple);">AI COPILOT CONFIGURATION</span>
+          <h3 class="modal-title" style="font-size: 1.35rem; color: #ffffff; margin-top: 4px;">Configure AI Task Architect</h3>
+        </div>
+        <button class="modal-close-btn" id="apikey-modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="key-guide-box">
+          <strong>💡 Which API Key Should You Use?</strong>
+          <ol>
+            <li><strong>Google Gemini API Key (Recommended):</strong> Free tier with 15 requests/min, up to 1M tokens/min at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" style="color: #38bdf8;">aistudio.google.com</a>. Ultra-fast and high reasoning power.</li>
+            <li><strong>Groq API Key (Free Alternative):</strong> Blazing fast Llama 3.3 70B inference at <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" style="color: #38bdf8;">console.groq.com</a>.</li>
+            <li><strong>OpenAI / Anthropic:</strong> Supported if you already have personal keys.</li>
+            <li><strong>Zero Key Needed (Default):</strong> The app has built-in instant local BM25 semantic search that works out-of-the-box with NO key required!</li>
+          </ol>
+          <div style="margin-top: 10px; font-size: 0.8rem; color: #94a3b8;">
+            🔒 <strong>Privacy:</strong> Your key is stored strictly in your browser's <code>localStorage</code>. It is NEVER transmitted to any intermediate server or uploaded to GitHub.
+          </div>
+        </div>
+
+        <form class="api-key-form" id="apikey-form" style="margin-top: 20px;" onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label" for="provider-select">Provider</label>
+            <select id="provider-select" class="form-select">
+              <option value="gemini" selected>Google Gemini (Free Tier · Recommended)</option>
+              <option value="groq">Groq (Free Tier · Llama 3.3 70B)</option>
+              <option value="openai">OpenAI (GPT-4o-mini)</option>
+              <option value="anthropic">Anthropic (Claude 3.5 Haiku)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="apikey-input">
+              <span>API Key</span>
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" id="get-key-link" style="color: #38bdf8; font-size: 0.78rem; font-weight: normal;">Get Free Key ↗</a>
+            </label>
+            <input type="password" id="apikey-input" class="form-input" placeholder="Paste your API key here (AIzaSy... or gsk_...)">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="model-select">Model</label>
+            <input type="text" id="model-select" class="form-input" value="gemini-2.5-flash">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="btn-clear-key">Clear Key (Use Local Search)</button>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-outline-purple" id="btn-test-key">Test Connection</button>
+          <button class="btn btn-primary" id="btn-save-key">Save & Connect</button>
+        </div>
+      </div>
     </div>
-    <div class="chips" id="chips" role="tablist" aria-label="Filter by type"></div>
-  </section>
-
-  <section id="bestPicks" class="best-picks" hidden>
-    <h2 class="section-label">Best picks</h2>
-    <div class="picks-row" id="picksRow"></div>
-  </section>
-
-  <div class="result-meta" id="resultMeta" aria-live="polite"></div>
-  <section class="grid" id="grid"></section>
-
-  <section class="empty" id="empty" hidden>
-    <p class="empty-title">Nothing matches that yet.</p>
-    <p class="empty-sub">Try a broader word, or start from one of these:</p>
-    <div class="empty-sugs" id="emptySugs"></div>
-  </section>
-</main>
-
-<footer class="foot">
-  <div class="foot-inner">
-    <span>Generated <time id="genTime"></time> from your machine — 599 entries across 7 sources.</span>
-    <span class="foot-links">Sources: <a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">ECC</a> · <a href="https://github.com/Shubhamsaboo/awesome-llm-apps" target="_blank" rel="noopener">awesome-llm-apps</a> · <a href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a></span>
   </div>
-</footer>
 
-<div class="popover" id="settingsPop" role="dialog" aria-modal="false" aria-label="AI settings" hidden>
-  <h3>AI recommendations <span class="muted">(optional)</span></h3>
-  <p class="pop-sub">Wire any OpenAI-compatible endpoint (e.g. a free model from the OpenCode console) to get a ranked recommendation for fuzzy needs. The site works fully without it — plain search is instant and offline.</p>
-  <label>Endpoint URL<input id="aiEndpoint" type="url" placeholder="https://api.opencode.ai/v1"></label>
-  <label>API key<input id="aiKey" type="password" placeholder="sk-…" autocomplete="off"></label>
-  <label>Model<input id="aiModel" type="text" placeholder="model-id"></label>
-  <div class="pop-row">
-    <button class="btn" id="aiSave" type="button">Save</button>
-    <button class="btn ghost" id="aiClear" type="button">Clear</button>
+  <!-- GitHub Deployment Modal -->
+  <div class="modal-overlay" id="deploy-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="item-type-badge" style="color: var(--accent-emerald);">DEPLOYMENT GUIDE</span>
+          <h3 class="modal-title" style="font-size: 1.35rem; color: #ffffff; margin-top: 4px;">Deploying to GitHub Pages</h3>
+        </div>
+        <button class="modal-close-btn" id="deploy-modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="deploy-instructions">
+          <div class="deploy-step">
+            <div class="deploy-step-title"><span>1️⃣</span> Create a New GitHub Repository</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Go to <a href="https://github.com/new" target="_blank" rel="noopener noreferrer" style="color: #38bdf8;">github.com/new</a> and create a public or private repository (e.g., <code>ecc-llm-navigator</code>).</p>
+          </div>
+
+          <div class="deploy-step">
+            <div class="deploy-step-title"><span>2️⃣</span> Push This Repository</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 8px;">Run these commands in terminal:</p>
+            <pre><code>git remote add origin https://github.com/&lt;your-username&gt;/ecc-llm-navigator.git
+git branch -M main
+git push -u origin main</code></pre>
+          </div>
+
+          <div class="deploy-step">
+            <div class="deploy-step-title"><span>3️⃣</span> Enable GitHub Pages</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              In your GitHub repo, navigate to <strong>Settings &rarr; Pages &rarr; Build and deployment</strong>.<br>
+              Under <strong>Source</strong>, select <strong>GitHub Actions</strong> (a pre-configured <code>deploy.yml</code> workflow is already included in this project!).
+            </p>
+          </div>
+
+          <div class="deploy-step" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.3);">
+            <div class="deploy-step-title" style="color: #34d399;"><span>✅</span> 100% Free & Secure Hosting</div>
+            <p style="font-size: 0.85rem; color: #94a3b8;">Since all 621 catalog items and BM25 search logic are bundled client-side, your website has <strong>zero server costs</strong>, works instantly, and visitors can optionally bring their own free Gemini keys without exposing any secrets.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div></div>
+        <button class="btn btn-primary" id="btn-copy-deploy-cmd">Copy Push Commands</button>
+      </div>
+    </div>
   </div>
-  <p class="pop-note">Stored only in this browser (localStorage). Requests go directly from your browser to the endpoint.</p>
-</div>
 
-<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+  <!-- Standalone catalog data & App logic -->
+  <script src="catalog_data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
