@@ -403,15 +403,24 @@ function calculateItemRelevance(item, rawQuery) {
   if (tags.includes(query)) score += 40;
 
   // Token matches
+  let nameTokenMatches = 0;
   tokens.forEach(token => {
-    if (name.includes(token)) score += 30;
-    if (category.includes(token)) score += 20;
+    if (name.includes(token)) {
+      score += 35;
+      nameTokenMatches++;
+    }
+    if (category.includes(token)) score += 15;
     if (tags.includes(token)) score += 18;
     if (techStack.includes(token)) score += 16;
     if (tools.includes(token)) score += 14;
     if (desc.includes(token)) score += 10;
     if (summary.includes(token)) score += 5;
   });
+
+  // Multi-token name synergy bonus (e.g., "security" AND "review" in name)
+  if (nameTokenMatches >= 2) {
+    score += (nameTokenMatches * 25);
+  }
 
   return score;
 }
