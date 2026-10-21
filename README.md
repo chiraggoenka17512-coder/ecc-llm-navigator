@@ -13,11 +13,18 @@ Type any natural language development need or problem (e.g. *"Flaky tests in CI 
 
 ## 🌟 Highlights
 
-- **987 Total Assets Indexed**:
+- **1,043 Total Assets Indexed**:
   - **121 Rules**: React, TypeScript, Python, Go, Rust, Swift, Angular, Vue, and core ECC standards.
   - **77 Agents**: Code reviewers, build resolvers, system architects, planners, and test analyzers.
   - **98 Workflows**: `/plan`, `/orch-add-feature`, `/orch-fix-defect`, `/code-review`, `/quality-gate`, etc.
-  - **691 Skills**: Full ECC catalog, Addy Osmani's agent skills, K-Dense life science skills, Firebase, and Flutter.
+  - **747 Skills**: Full ECC catalog, Addy Osmani's agent skills, K-Dense scientific skills, Firebase, Flutter, and the newly added **AI Design & Motion Suite** (Awwwards MCP, Responsively, Genjutsu, Dembrandt Design Systems, App Store Screenshots, and Brag Video).
+- **Featured AI Design & Motion Repos**:
+  - 🏆 **Awwwards MCP**: Search award-winning websites, inline screenshots, extract design DNA, motion filmstrip, and verify builds.
+  - 📱 **Responsively App & MCP**: Multi-device automated responsive layout inspector, viewport screenshots, and CSS layout fixes.
+  - 🎨 **Genjutsu**: Craft-level design skills — `cast` (micro-interactions), `paint` (complete product look), and `bunshin` (multi-agent parallel site builder swarm).
+  - 💎 **Dembrandt & Dembrandt Skills**: Extract live design systems into W3C tokens, `design.md`, 45 modular brand & token skills.
+  - 📱 **App Store Screenshots**: Connected-canvas Next.js visual marketing screenshot studio with device mockups and 1-click store zip exports.
+  - 🎬 **Brag**: Turns any web project or landing page into a 20-second launch video with motion, music, and social share copy (`brag` & `brag-slim`).
 - **True In-Browser Neural Semantic Search**:
   - Precomputed 384-dimensional normalized vector embeddings (`all-MiniLM-L6-v2`).
   - Query vector generated in real-time in your browser via Transformers.js (`@xenova/transformers`).
